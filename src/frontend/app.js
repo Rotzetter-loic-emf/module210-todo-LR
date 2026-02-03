@@ -1,9 +1,31 @@
 //const apiEndpoint = "https://fa-todo-backend-baqmes.azurewebsites.net/api/tasks";
 const apiEndpoint = "https://todo.ashystone-69d4c43d.northeurope.azurecontainerapps.io/api/tasks";
+const countEndpoint = "https://tasks-count-hebdghf8hve2hca4.northeurope-01.azurewebsites.net/api/tasksCount";
+
+
+
+
+async function loadTasksCount() {
+  try {
+    const r = await fetch(countEndpoint);
+    const data = await r.json();
+    document.getElementById("tasksCount").textContent = data.count ?? "0";
+  } catch (e) {
+    document.getElementById("tasksCount").textContent = "?";
+  }
+}
+
+
+
+
+
+
+
 
 $(document).ready(function () {
   // Charger les tâches au démarrage
   loadTasks();
+  loadTasksCount();
 
   // Ajouter une nouvelle tâche
   $("#todo-form").on("submit", async function (e) {
@@ -21,6 +43,7 @@ $(document).ready(function () {
         body: JSON.stringify(task),
       });
       loadTasks();
+      loadTasksCount();
       $("#todo-input").val(""); // Réinitialiser le champ
     } catch (error) {
       console.error("Erreur lors de l'ajout de la tâche :", error);
@@ -55,6 +78,7 @@ $(document).ready(function () {
         body: JSON.stringify(updatedTask),
       });
       loadTasks(); // Recharge les tâches après mise à jour
+      loadTasksCount();
     } catch (error) {
       console.error("Erreur lors de la mise à jour de la tâche :", error);
     }
@@ -70,6 +94,7 @@ $(document).ready(function () {
         method: "DELETE",
       });
       loadTasks();
+      loadTasksCount();
     } catch (error) {
       console.error("Erreur lors de la suppression de la tâche :", error);
     }
