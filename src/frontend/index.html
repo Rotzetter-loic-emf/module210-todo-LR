@@ -1,24 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todo App with Backend</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo App</title>
+
+  <link rel="stylesheet" href="styles.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="app.js" defer></script>
 </head>
+
 <body>
-  <div class="app-container">
-    <h1>Todo App is really cool</h1>
-    <form id="todo-form">
-      <input type="text" id="todo-input" placeholder="Add a new task" required>
-      <button type="submit">Add</button>
-    </form>
-    <ul id="todo-list"></ul>
-  </div>
-  <div id="tasksCountBox" style="margin:10px 0;font-weight:bold;">
-    Nombre de tâches : <span id="tasksCount">...</span>
-  </div>  
+  <main class="app-container">
+    <header class="app-header">
+      <h1>Todo App</h1>
+
+      <div id="tasksCountBox" class="tasks-count" aria-live="polite">
+        Nombre de tâches : <span id="tasksCount">...</span>
+      </div>
+    </header>
+
+    <section class="app-content">
+      <form id="todo-form" class="todo-form" autocomplete="off">
+        <input
+          type="text"
+          id="todo-input"
+          placeholder="Ajouter une tâche…"
+          required
+        />
+        <button type="submit">Ajouter</button>
+      </form>
+
+      <ul id="todo-list" class="todo-list"></ul>
+    </section>
+  </main>
 </body>
 </html>
