@@ -43,6 +43,16 @@ jobs:
                return await coredemo.getIDToken()
            result-encoding: string
       - name: Build And Deploy
+
+       - name: Exécuter Lighthouse sur le site
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: |
+            https://todo.loicrotzetter.emf-informatique.ch/
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
