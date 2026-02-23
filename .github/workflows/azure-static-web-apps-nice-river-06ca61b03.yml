@@ -63,7 +63,6 @@ jobs:
         with:
           urls: |
             https://todo.loicrotzetter.emf-informatique.ch/
-          uploadArtifacts: true
           temporaryPublicStorage: true
 
   close_pull_request_job:
