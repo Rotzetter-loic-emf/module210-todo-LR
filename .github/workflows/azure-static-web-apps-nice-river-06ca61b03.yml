@@ -34,6 +34,7 @@ jobs:
 
       - name: Install OIDC Client from Core Package
         run: npm install @actions/core@1.6.0 @actions/http-client
+
       - name: Get Id Token
         uses: actions/github-script@v6
         id: idtoken
@@ -42,17 +43,8 @@ jobs:
                const coredemo = require('@actions/core')
                return await coredemo.getIDToken()
            result-encoding: string
+
       - name: Build And Deploy
-
-       - name: Exécuter Lighthouse sur le site
-        uses: treosh/lighthouse-ci-action@v10
-        with:
-          urls: |
-            https://todo.loicrotzetter.emf-informatique.ch/
-          uploadArtifacts: true
-          temporaryPublicStorage: true
-
-
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
@@ -65,6 +57,14 @@ jobs:
           output_location: "." # Built app content directory - optional
           github_id_token: ${{ steps.idtoken.outputs.result }}
           ###### End of Repository/Build Configurations ######
+
+      - name: Exécuter Lighthouse sur le site
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: |
+            https://todo.loicrotzetter.emf-informatique.ch/
+          uploadArtifacts: true
+          temporaryPublicStorage: true
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
