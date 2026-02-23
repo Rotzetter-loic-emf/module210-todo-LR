@@ -5,11 +5,11 @@ on:
     branches:
       - main
     paths:
-      - "backend/**"     # ne lance le workflow que si le dossier backend change
+      - "src/backend/**"
       - ".github/workflows/ci-backend.yml"
 
 env:
-  REGISTRY: ${{ secrets.REGISTRY_LOGIN_SERVER }}   # ex: monregistry.azurecr.io
+  REGISTRY: ${{ secrets.REGISTRY_LOGIN_SERVER }} # ex: monregistry.azurecr.io
   IMAGE_NAME: backend-app
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}" ./backend
+          docker build -t "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}" ./src/backend
 
       - name: Push Docker image
         run: |
