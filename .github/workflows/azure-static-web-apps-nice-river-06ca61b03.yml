@@ -6,12 +6,14 @@ on:
       - main
     paths:
       - "src/frontend/**"
+      - ".github/workflows/azure-static-web-apps-nice-river-06ca61b03.yml"
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
       - main
     paths:
       - "src/frontend/**"
+      - ".github/workflows/azure-static-web-apps-nice-river-06ca61b03.yml"
 jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
