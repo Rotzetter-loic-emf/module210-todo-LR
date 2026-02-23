@@ -63,7 +63,7 @@ jobs:
         with:
           urls: |
             https://todo.loicrotzetter.emf-informatique.ch/
-          configPath: /lighthouserc.json
+          configPath: .lighthouserc.json
           temporaryPublicStorage: true
 
   close_pull_request_job:
